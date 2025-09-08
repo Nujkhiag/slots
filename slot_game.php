@@ -9,13 +9,17 @@ while ($spin < 20 && $money <= 500) {
         $randomLetter = array_rand($letters);
         $spinResult .= $letters[$randomLetter];
     }
-    echo $spinResult . "\n";
-    $result = 0;
+    echo $spinResult;
     $money = match ($spinResult) {
         'AAA', 'BBB', 'CCC' => $money + 100,
         'AAB', 'ABA', 'BAA', 'ABB', 'BBA', 'BAB', 'BCC', 'CBC', 'CCB', 'ACC', 'CAC', 'CCA' => $money + 50,
         default => $money,
     };
-    echo $money;
+        $spinResult = match ($spinResult) {
+        'AAA', 'BBB', 'CCC' => '100',
+        'AAB', 'ABA', 'BAA', 'ABB', 'BBA', 'BAB', 'BCC', 'CBC', 'CCB', 'ACC', 'CAC', 'CCA' => '50',
+        default => '0',
+    };
+    echo " you won {$spinResult}\n";
     $spin++;
 }
